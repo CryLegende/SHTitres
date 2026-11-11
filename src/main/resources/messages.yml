@@ -1,0 +1,109 @@
+# Messages et textes du menu de SHTitres. Codes couleur & et &#RRGGBB ; placeholders PlaceholderAPI acceptés dans le
+# menu. Un message vide ("") n'est pas envoyé.
+#   {titre}    titre rendu (version fixe)        {nom}      nom du titre sans couleur
+#   {id}       identifiant du titre              {player}   pseudo
+#   {variant}  libellé de la seconde version     {categorie} nom de la catégorie
+#   {page} {pages}  page du menu                 {file} {error}  fichier refusé par reload et cause
+
+# Joueur
+selected: "&7&l« &a&lSH &8&l» &7Vous avez maintenant le titre {titre}&7 !"
+removed: "&7&l« &e&lSH &8&l» &7Vous avez retiré votre titre {titre}&7."
+buy: "&7&l« &b&lSH &8&l» &7Cliquez ici » &bstore.skyhand.fr"
+storage-error: "&7&l« &c&lSH &8&l» &7Votre titre n'a pas pu être &cenregistré&7, réessayez dans un instant."
+
+# Administration (/shtitres)
+admin-usage: "&7&l« &e&lSH &8&l» &7Usage : &e/shtitres <{subcommands}>"
+admin-usage-set: "&7&l« &e&lSH &8&l» &7Usage : &e/shtitres set <joueur> <titre> [variant]"
+admin-usage-player: "&7&l« &e&lSH &8&l» &7Usage : &e/shtitres {subcommand} <joueur>"
+admin-unknown-command: "&8&l« &f&lSH &8&l» &fCommande inconnue, essayer autre chose."
+admin-unknown-title: "&7&l« &c&lSH &8&l» &7Titre &c{id}&7 inconnu. &8(/shtitres list)"
+admin-set: "&7&l« &a&lSH &8&l» &7Titre de &a{player}&7 : {titre}&7."
+admin-set-not-owned: "&7&l« &6&lSH &8&l» &a{player}&7 n'a pas la permission &6{permission}&7 : le titre est enregistré mais ne s'affichera pas."
+admin-cleared: "&7&l« &a&lSH &8&l» &7Titre de &a{player}&7 retiré."
+admin-info: "&7&l« &e&lSH &8&l» &e{player}&7 : {titre} &8({id}{variant}){owned}"
+admin-info-none: "&7&l« &e&lSH &8&l» &e{player}&7 n'a pas de titre."
+admin-info-not-owned: " &6sans la permission, non affiché"
+admin-list-header: "&7&l« &e&lSH &8&l» &e{count}&7 titres :"
+admin-list-line: " &8• &7{id} &8: {titre}"
+admin-storage-error: "&7&l« &c&lSH &8&l» &7Erreur de base de données, voir la console."
+admin-reload: "&7&l« &a&lSH &8&l» &7Configuration rechargée : &a{count}&7 titres."
+admin-reload-warnings: "&7&l« &6&lSH &8&l» &6{count}&7 avertissement(s), voir la console."
+admin-reload-failed: "&7&l« &c&lSH &8&l» &c{file}&7 est invalide, rien n'a été rechargé : &c{error}"
+
+menu:
+  # Nom du menu : titre suivi de « (page/pages) » quand la catégorie a plusieurs pages.
+  title: "&8&lCosmétiques &8| {categorie}"
+  title-pages: "&8&lCosmétiques &8| {categorie} ({page}/{pages})"
+  categories:
+    titres: "Titres"
+    speciaux: "Titres Spéciaux"
+  # Nom d'un titre dans le menu
+  item-name: "&fTitre {titre}"
+  # Ligne d'aperçu : {titre} suivi du préfixe et du pseudo, comme dans le chat
+  preview: "{titre} %luckperms_prefix%%essentials_nickname% &7»"
+  # Libellé de la seconde version d'un titre « variant: adaptive »
+  variant-adaptive: "Couleur adaptative"
+  # Libellé par défaut d'une variante écrite dans titles.yml (sans « label »)
+  variant-alternate: "Version alternative"
+  # Description d'un titre. {apercu} et {apercu_variant} sont remplacés par la ligne preview ; {obtention} par les
+  # lignes obtain du titre. Les blocs variant-* ne s'ajoutent que si le titre a une seconde version.
+  lore-preview:
+    - ""
+    - "{apercu}"
+  lore-variant:
+    - ""
+    - "&7{variant} :"
+    - "{apercu_variant}"
+  lore-obtain:
+    - ""
+    - "{obtention}"
+  lore-worn:
+    - ""
+    - "&a&l✔ &aTitre porté"
+  lore-apply:
+    - ""
+    - "&7&o(( &e&oClic gauche &7&opour appliquer &7&o))"
+  lore-apply-variant:
+    - "&7&o(( &e&oClic droit &7&opour appliquer : {variant_lower} &7&o))"
+  lore-buy:
+    - ""
+    - "&7&o(( &e&oCliquez &7&opour acheter &7&o))"
+  locked-item:
+    name: "&cTitre non obtenu"
+    lore:
+      - ""
+      - "&8• &7Vous ne pouvez pas voir"
+      - "&7les titres spéciaux que vous"
+      - "&7ne possédez pas."
+      - ""
+  remove:
+    name: "&cRetirer votre titre"
+    lore:
+      - ""
+      - " &8• &7Titre actuel : {titre}"
+      - ""
+      - "&8&o(( &c&oCliquez pour le retirer &8&o))"
+    lore-none:
+      - ""
+      - " &8• &7Titre actuel : &cAucun"
+      - ""
+      - "&8&o(( &7&oChoisissez un titre &8&o))"
+  previous:
+    name: "&fPage précédente"
+    lore:
+      - ""
+      - "&8• &7Page {page}/{pages}"
+      - ""
+  next:
+    name: "&fPage suivante"
+    lore:
+      - ""
+      - "&8• &7Page {page}/{pages}"
+      - ""
+  switch:
+    name: "&f{categorie}"
+    lore:
+      - ""
+      - "&8• &7Cliquez ici pour voir"
+      - "&7les {categorie_lower}"
+      - ""

@@ -1,0 +1,614 @@
+# Titres de SHTitres, dans l'ordre du menu.
+#
+# Un titre :
+#   category    catégorie du menu (config.yml, categories)
+#   permission  permission qui fait posséder le titre (tag.<titre>)
+#   icon        icône du menu : un matériau (PUMPKIN) ou une tête « basehead-<texture base64> »
+#   glint       icône enchantée (true/false)
+#   hidden      caché du menu tant que le joueur ne le possède pas
+#   text        le titre, en MiniMessage : <gradient:#FF4B4B:#E50914>Netflix</gradient>, <b>gras</b>, <#3FBF4F>couleur
+#   border      bords prédéfinis (section borders), ou left / right écrits à la main (MiniMessage, espaces comprises)
+#   animation   animation du texte (les bords restent fixes) :
+#     type      wave   le dégradé du texte défile en boucle
+#               shine  un reflet traverse le texte, puis une pause
+#               pulse  le texte s'éclaire puis revient, comme un battement
+#     seconds   durée d'un cycle
+#     color     couleur du reflet ou de l'éclat (shine, pulse)
+#     strength  force du reflet ou de l'éclat, de 0 à 1
+#   variant     seconde version, choisie au clic droit :
+#     adaptive  les bords prennent la couleur du joueur (config.yml, adaptive-color-placeholder)
+#     section   autre apparence : label (nom dans le menu), text, border / left / right, animation ; ce qui manque
+#               est repris du titre
+#   obtain      lignes « comment l'obtenir » du menu, ou le nom d'un bloc de obtain-presets
+#
+# Le chat et les menus montrent la version fixe (image 0 de l'animation) ; le nametag montre l'animation.
+# Garder des couleurs assez claires : le nametag a un fond sombre, &4 ou &5 purs s'y lisent mal.
+# Symboles : tout caractère de la police du jeu (Unifont) marche, éviter les émojis (hors de la police des clients
+# 1.19 et de Bedrock).
+
+borders:
+  crochets:
+    left: "<#AAAAAA>["
+    right: "<#AAAAAA>]"
+  crochets-blancs:
+    left: "<white>["
+    right: "<white>]"
+  gemme-emeraude:
+    left: "<#A8FFD0>⯁ "
+    right: "<#A8FFD0> ⯁"
+  gemme-diamant:
+    left: "<#C8F6FF>⯁ "
+    right: "<#C8F6FF> ⯁"
+  gemme-obsidienne:
+    left: "<#D9C2FF>⯁ "
+    right: "<#D9C2FF> ⯁"
+  gemme-rubis:
+    left: "<#FFF0A8>⯁ "
+    right: "<#FFF0A8> ⯁"
+  gemme-saphir:
+    left: "<#9CE8FF>⯁ "
+    right: "<#9CE8FF> ⯁"
+  gemme-opale:
+    left: "<#FFD9B8>⯁ "
+    right: "<#FFD9B8> ⯁"
+
+obtain-presets:
+  box-cosmetiques:
+    - " &8• &7Titre uniquement obtenable dans la"
+    - "&7box &d&lCosmétiques &7sur les SkyBlock"
+  box-legendaire:
+    - " &8• &7Titre uniquement obtenable dans la"
+    - "&7box &6&lLégendaire &7sur les SkyBlock"
+
+titles:
+
+  # ---------------------------------------------------------------------------------------------------------------
+  # Titres (boxes)
+  # ---------------------------------------------------------------------------------------------------------------
+
+  lucky:
+    category: titres
+    permission: tag.lucky
+    icon: GREEN_DYE
+    left: "<#3FBF4F>☘ "
+    text: "<gradient:#C2FF8A:#43D95B>Lucky</gradient>"
+    right: "<#3FBF4F> ☘"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  architecte:
+    category: titres
+    permission: tag.architecte
+    icon: LAPIS_LAZULI
+    left: "<#9FB4D6>⚒ "
+    text: "<gradient:#4F8BFF:#5CE1FF>Architecte</gradient>"
+    right: "<#9FB4D6> ⚒"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  skillaura:
+    category: titres
+    permission: tag.skillaura
+    icon: BLAZE_ROD
+    border: crochets
+    text: "<gradient:#FF8A4C:#FF3B5C><b>Skill</b>Aura</gradient>"
+    animation:
+      type: pulse
+      seconds: 2.4
+      color: "#FFE0C8"
+      strength: 0.55
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  immortel:
+    category: titres
+    permission: tag.immortel
+    icon: TOTEM_OF_UNDYING
+    border: crochets
+    text: "<gradient:#FFE27A:#FFA41B>Immortel</gradient>"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  netflix:
+    category: titres
+    permission: tag.netflix
+    icon: basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDYzYWQ4Y2JmNjhhODQyYzM0MWM5Y2NjMzQzM2I0NDNmMDNmNzdiMGRlMjY0OGJjYzkzYzRjNDdhODA2ZCJ9fX0=
+    border: crochets
+    text: "<b><gradient:#FF4B4B:#E50914>Netflix</gradient></b>"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  assassin:
+    category: titres
+    permission: tag.assassin
+    icon: SPECTRAL_ARROW
+    left: "<#B8BCC8>⚔ "
+    text: "<gradient:#FF5A5A:#C9182B>Assassin</gradient>"
+    right: "<#B8BCC8> ⚔"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  toxic:
+    category: titres
+    permission: tag.toxic
+    icon: FERMENTED_SPIDER_EYE
+    border: crochets
+    text: "<b><#D27BFF>T</#D27BFF></b><#8CFF3C>☢</#8CFF3C><b><gradient:#BE6BFF:#8A2BE2>xic</gradient></b>"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  blood:
+    category: titres
+    permission: tag.blood
+    icon: RED_DYE
+    border: crochets
+    text: "<b><gradient:#FF3B3B:#B3121B>Blood</gradient></b>"
+    animation:
+      type: pulse
+      seconds: 1.4
+      color: "#FF9A9A"
+      strength: 0.6
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  witherboss:
+    category: titres
+    permission: tag.witherboss
+    icon: WITHER_SKELETON_SKULL
+    left: "<#A0A0A8>☠ "
+    text: "<gradient:#6F7BFF:#A6B0FF>Wither</gradient><gradient:#FFFFFF:#D6D6E0>Boss</gradient>"
+    right: "<#A0A0A8> ☠"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  snowman:
+    category: titres
+    permission: tag.snowman
+    icon: PUMPKIN
+    left: "<#DDF3FF>☃ "
+    text: "<b><gradient:#FFFFFF:#D4F1FF>Snow</gradient><gradient:#FFB347:#FF8C1A>Man</gradient></b>"
+    right: "<#DDF3FF> ☃"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  farm2win:
+    category: titres
+    permission: tag.farm2win
+    icon: WHEAT
+    left: "<#9ACD5A>⚘ "
+    text: "<gradient:#F4D35E:#6CCB4F>farm2win</gradient>"
+    right: "<#9ACD5A> ⚘"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  pay2win:
+    category: titres
+    permission: tag.pay2win
+    icon: GOLDEN_CARROT
+    left: "<#FFD166>$ "
+    text: "<gradient:#FF7070:#E0243B>pay2win</gradient>"
+    right: "<#FFD166> $"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  vipere:
+    category: titres
+    permission: tag.vipere
+    icon: ENDER_EYE
+    left: "<#5FD35F>∿ "
+    text: "<gradient:#7CF05A:#1FA35B>Vipère</gradient>"
+    right: "<#5FD35F> ∿"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  enderdragon:
+    category: titres
+    permission: tag.enderdragon
+    icon: DRAGON_BREATH
+    border: crochets
+    text: "<gradient:#D08CFF:#A050F0>Ender</gradient><gradient:#FFFFFF:#E9DAFF>Dragon</gradient>"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  dragonhunter:
+    category: titres
+    permission: tag.dragonhunter
+    icon: GOLDEN_AXE
+    glint: true
+    border: crochets
+    text: "<b><gradient:#8EF6FF:#3CC8F5>Dragon</gradient><gradient:#FFE873:#FFB224>Hunter</gradient></b>"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  skyblock:
+    category: titres
+    permission: tag.skyblock
+    icon: POPPY
+    border: crochets
+    text: "<gradient:#9FE7FF:#6BD66B:#2EA043>SkyBlock</gradient>"
+    variant: adaptive
+    obtain: box-legendaire
+
+  creeper:
+    category: titres
+    permission: tag.creeper
+    icon: CREEPER_HEAD
+    border: crochets
+    text: "<#86E85F>C<#3DA83A>r<#86E85F>e<#3DA83A>e<#86E85F>p<#3DA83A>e<#86E85F>r"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  nightmare:
+    category: titres
+    permission: tag.nightmare
+    icon: CHORUS_FLOWER
+    left: "<#B9A7E8>☾ "
+    text: "<gradient:#A3A3C2:#7D7DA3>Night</gradient><gradient:#B86BFF:#8E44D9>mare</gradient>"
+    right: "<#B9A7E8> ☽"
+    variant: adaptive
+    obtain: box-legendaire
+
+  nolife:
+    category: titres
+    permission: tag.nolife
+    icon: GOLDEN_HORSE_ARMOR
+    border: crochets
+    text: "<white>No</white><gradient:#FF7676:#E63946>Life</gradient>"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  google:
+    category: titres
+    permission: tag.google
+    icon: COMMAND_BLOCK
+    border: crochets
+    text: "<#4285F4>G<#EA4335>o<#FBBC05>o<#4285F4>g<#34A853>l<#EA4335>e"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  progamer:
+    category: titres
+    permission: tag.progamer
+    icon: basehead-eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdjYTJhYThhOWY1ZDMyNDZlZTdmMmQwN2UxZDVmZDQ4MTkxMjVlY2RkZjVhNzJlMmY2NzUzNTVhM2I5YmNjIn19fQ==
+    border: crochets
+    text: "<white>Pro</white><gradient:#8AB0FF:#5C7CFF>Gamer</gradient>"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  rageux:
+    category: titres
+    permission: tag.rageux
+    icon: WOODEN_SWORD
+    border: crochets
+    text: "<gradient:#FFC14D:#FF5E3A:#E0243B>Rageux</gradient>"
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  enchanteur:
+    category: titres
+    permission: tag.enchanteur
+    icon: ENCHANTING_TABLE
+    left: "<#E8B5FF>✧ "
+    text: "<gradient:#FF9CF7:#B65CFF>Enchanteur</gradient>"
+    right: "<#E8B5FF> ✧"
+    animation:
+      type: wave
+      seconds: 2.4
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  enchanteur2:
+    category: titres
+    permission: tag.enchanteur2
+    icon: EXPERIENCE_BOTTLE
+    left: "<#B5F1FF>✧ "
+    text: "<gradient:#FF9CF7:#6FE7FF>Enchanteur</gradient>"
+    right: "<#B5F1FF> ✧"
+    animation:
+      type: wave
+      seconds: 2.4
+    variant: adaptive
+    obtain: box-cosmetiques
+
+  # ---------------------------------------------------------------------------------------------------------------
+  # Titres spéciaux (événements, récompenses, anciens serveurs)
+  # ---------------------------------------------------------------------------------------------------------------
+
+  emeraude:
+    category: speciaux
+    permission: tag.emeraude
+    icon: EMERALD
+    border: gemme-emeraude
+    text: "<gradient:#7DFFB8:#19C76A>Emeraude</gradient>"
+    animation:
+      type: shine
+      seconds: 3.5
+      strength: 0.85
+    obtain:
+      - " &8• &7Ce titre d'une époque"
+      - "&anostalgique &7n'est plus obtenable"
+
+  diamant:
+    category: speciaux
+    permission: tag.diamant
+    icon: DIAMOND
+    border: gemme-diamant
+    text: "<gradient:#C9F7FF:#3FCBFF>Diamant</gradient>"
+    animation:
+      type: shine
+      seconds: 3.5
+      strength: 0.85
+    obtain:
+      - " &8• &7Ce titre d'une époque"
+      - "&bnostalgique &7n'est plus obtenable"
+
+  obsidienne:
+    category: speciaux
+    permission: tag.obsidienne
+    icon: NETHER_BRICK
+    border: gemme-obsidienne
+    text: "<gradient:#C792FF:#7F3FD1>Obsidienne</gradient>"
+    animation:
+      type: shine
+      seconds: 3.5
+      strength: 0.85
+    obtain:
+      - " &8• &7Ce titre d'une époque"
+      - "&5nostalgique &7n'est plus obtenable"
+
+  rubis:
+    category: speciaux
+    permission: tag.rubis
+    icon: REDSTONE
+    border: gemme-rubis
+    text: "<gradient:#FFF27A:#FFC233>Rubis</gradient>"
+    animation:
+      type: shine
+      seconds: 3.5
+      strength: 0.85
+    obtain:
+      - " &8• &7Ce titre d'une époque"
+      - "&enostalgique &7n'est plus obtenable"
+
+  rubisv2:
+    category: speciaux
+    permission: tag.rubisv2
+    icon: REDSTONE
+    border: gemme-rubis
+    text: "<gradient:#FFF27A:#FFC233>Rubis</gradient><gradient:#FFAA33:#FF8A00>V2</gradient>"
+    animation:
+      type: shine
+      seconds: 3.5
+      strength: 0.85
+    obtain:
+      - " &8• &7Ce titre d'une époque"
+      - "&enostalgique &7n'est plus obtenable"
+
+  envoy:
+    category: speciaux
+    permission: tag.envoy
+    icon: CHEST
+    border: crochets-blancs
+    text: "<gradient:#B26BFF:#FF7EC8:#FFE45C>Envoy</gradient>"
+    obtain:
+      - " &8• &7Titre obtenable dans"
+      - "&7un coffre d'envoy &8(Cargaison)"
+
+  snowfall:
+    category: speciaux
+    permission: tag.snowfall
+    icon: SNOWBALL
+    left: "<#FF5A5A>❄ "
+    text: "<gradient:#9ED8FF:#D9F1FF>Snow</gradient><gradient:#FFFFFF:#E8F6FF>Fall</gradient>"
+    right: "<#FF5A5A> ❄"
+    obtain:
+      - " &8• &7Titre obtenable durant"
+      - "&7la période de Noël."
+
+  nitrobooster:
+    category: speciaux
+    permission: tag.nitrobooster
+    icon: END_CRYSTAL
+    border: crochets-blancs
+    text: "<b><gradient:#FF73FA:#C86BFF>Nitro</gradient></b><gradient:#E89CFF:#FF9CE8>Booster</gradient>"
+    animation:
+      type: wave
+      seconds: 2.8
+    obtain:
+      - " &8• &7Titre obtenable en boostant"
+      - "&7le Discord de SkyHand"
+
+  topvote:
+    category: speciaux
+    permission: tag.topvote
+    icon: TRIPWIRE_HOOK
+    glint: true
+    left: "<#FFD54A>★ "
+    text: "<gradient:#FFA81F:#FFE066:#FFF4B8>TopVote</gradient>"
+    right: "<#FFD54A> ★"
+    animation:
+      type: shine
+      seconds: 3.0
+      strength: 0.9
+    obtain:
+      - " &8• &7Titre obtenable en finissant"
+      - "&eTop 1 &7vote du mois."
+
+  halloween:
+    category: speciaux
+    permission: tag.halloween
+    icon: JACK_O_LANTERN
+    left: "<#A86BFF>["
+    text: "<gradient:#FFB347:#FF7518>Halloween</gradient>"
+    right: "<#A86BFF>]"
+    obtain:
+      - " &8• &7Titre obtenable durant"
+      - "&7la période d'Halloween."
+
+  boostinfini:
+    category: speciaux
+    permission: tag.boostinfini
+    icon: ELYTRA
+    left: "<#FF8CF5>∞ "
+    text: "<gradient:#FF8CF5:#B45CFF:#8F5BFF>BoostInfini</gradient>"
+    right: "<#FF8CF5> ∞"
+    animation:
+      type: wave
+      seconds: 3.0
+    obtain:
+      - " &8• &7Titre obtenable en boostant"
+      - "&7le Discord de SkyHand pendant 1 an"
+
+  summerhits:
+    category: speciaux
+    permission: tag.summerhits
+    icon: COD
+    left: "<#8EE3F5>♫ "
+    text: "<gradient:#FFD166:#FF9F1C>Summer</gradient><b><gradient:#4CC9F0:#4895EF>Hits</gradient></b>"
+    right: "<#8EE3F5> ♫"
+    obtain:
+      - " &8• &7Titre obtenable en finissant"
+      - "&7le challenge &bDJ&7 sur &eRubis"
+
+  saphir:
+    category: speciaux
+    permission: tag.saphir
+    icon: SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE
+    border: gemme-saphir
+    text: "<gradient:#00B7FF:#04F37C>Saphir</gradient>"
+    animation:
+      type: shine
+      seconds: 3.5
+      strength: 0.85
+    obtain:
+      - " &8• &7Titre obtenable après avoir"
+      - "&7passé &4600 &7heures sur &#00B7FFS&#01C3E5a&#02CFCBp&#02DBB0h&#03E796i&#04F37Cr"
+
+  love:
+    category: speciaux
+    permission: tag.love
+    icon: RED_CANDLE
+    left: "<#FF4D6D>❤ "
+    text: "<gradient:#FF8FA3:#FF2E63>Love</gradient>"
+    right: "<#FF4D6D> ❤"
+    animation:
+      type: pulse
+      seconds: 1.6
+      color: "#FFD1DC"
+      strength: 0.6
+    variant:
+      label: "Couleur alternative"
+      left: "<#FF8CC6>❤ "
+      text: "<gradient:#FFB3DE:#E055A0>Love</gradient>"
+      right: "<#FF8CC6> ❤"
+    obtain:
+      - " &8• &7Titre obtenable durant"
+      - "&7la Saint Valentin."
+
+  chocohunter:
+    category: speciaux
+    permission: tag.chocohunter
+    icon: BROWN_DYE
+    left: "<#F3D9B1>⬮ "
+    text: "<gradient:#D9964F:#A8652E>Choco</gradient><gradient:#F0B77A:#D98E48>Hunter</gradient>"
+    right: "<#F3D9B1> ⬮"
+    variant:
+      label: "Titre alternatif"
+      text: "<gradient:#D9964F:#A8652E>Choco</gradient><gradient:#F0B77A:#D98E48>Bon</gradient>"
+    obtain:
+      - " &8• &7Titre obtenable durant"
+      - "&7l'Évènement Pâques."
+
+  opale:
+    category: speciaux
+    permission: tag.opale
+    icon: HORN_CORAL
+    border: gemme-opale
+    text: "<gradient:#F48854:#FDFA8C>Opale</gradient>"
+    animation:
+      type: shine
+      seconds: 3.5
+      strength: 0.85
+    obtain:
+      - " &8• &7Titre obtenable après avoir"
+      - "&7passé &4600 &7heures sur &#F48854O&#F6A562p&#F9C170a&#FBDE7El&#FDFA8Ce"
+
+  apiculteur:
+    category: speciaux
+    permission: tag.apiculteur
+    icon: HONEYCOMB
+    left: "<#AAAAAA>「"
+    text: "<gradient:#FDFC00:#FFA500>Apiculteur</gradient> <#FF9200>⬢"
+    right: "<#AAAAAA>」"
+    animation:
+      type: wave
+      seconds: 3.0
+    variant: adaptive
+    obtain:
+      - " &8• &7Titre uniquement obtenable avec"
+      - "&7la quête secrète &eDu Miel pour Winnie &7!"
+
+  floconeternel:
+    category: speciaux
+    permission: tag.floconeternel
+    icon: NETHER_STAR
+    left: "<#00A3FF>❄ "
+    text: "<gradient:#55C2FF:#FFFFFF:#55C2FF>Flocon Éternel</gradient>"
+    right: "<#00A3FF> ❄"
+    animation:
+      type: wave
+      seconds: 3.2
+    variant:
+      label: "Couleur alternative"
+      left: "<white>❄ "
+      text: "<gradient:#C6EBFF:#00A3FF:#BFE8FF>Flocon Éternel</gradient>"
+      right: "<white> ❄"
+    obtain:
+      - " &8• &7Titre obtenable durant"
+      - "&7la période de noël de &c2025"
+
+  grinch:
+    category: speciaux
+    permission: tag.grinch
+    icon: SLIME_BALL
+    border: crochets-blancs
+    text: "<gradient:#2FA82F:#7DFA5D>Grinch</gradient> <#7DFA5D>☹"
+    variant: adaptive
+    obtain:
+      - " &8• &7Titre obtenable durant"
+      - "&7la période de noël de &c2025"
+
+  topdonateur:
+    category: speciaux
+    permission: tag.topdonateur
+    icon: NAUTILUS_SHELL
+    left: "<#FFC23D>⚜ "
+    text: "<gradient:#FFF1C1:#FFB347:#FF9C4B>TopDonateur</gradient>"
+    right: "<#FFC23D> ⚜"
+    animation:
+      type: wave
+      seconds: 3.0
+    obtain:
+      - " &8• &7Titre obtenable en étant"
+      - "&7Top Donateur sur la Boutique !"
+      - "&8(store.skyhand.fr)"
+
+  brrr:
+    category: speciaux
+    permission: tag.brrr
+    icon: BLUE_ICE
+    hidden: true
+    border: crochets-blancs
+    text: "<b><gradient:#E6F8FF:#6FD3FF>Brrr</gradient></b><#6FD3FF>❄"
+
+  skyhand:
+    category: speciaux
+    permission: tag.skyhand
+    icon: HORN_CORAL
+    hidden: true
+    left: "<#F9C170>✦ "
+    text: "<b><gradient:#F48854:#FDFA8C>SkyHand</gradient></b>"
+    right: "<#F9C170> ✦"
+    animation:
+      type: wave
+      seconds: 3.0

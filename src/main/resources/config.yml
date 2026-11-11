@@ -1,0 +1,152 @@
+# SHTitres : titres cosmétiques affichés devant le pseudo, dans le chat et au-dessus du joueur.
+# Chaque titre est décrit une seule fois dans titles.yml (texte, bords, dégradé, animation, icône) ; le plugin
+# calcule au chargement sa version fixe et toutes les images de son animation, puis les sert en placeholders.
+# Le titre choisi par chaque joueur est enregistré en base, partagée entre les serveurs (Opale, lobby).
+# Posséder un titre = avoir sa permission (tag.<titre> par défaut, donnée par les boxes, envoys, la boutique...).
+#
+# Commandes :
+#   /titres                                  ouvre le menu des titres                       shtitres.use
+#     alias : /titre, /tags, /tag, /titres2, /titre_speciaux, /titre_speciaux2 (ces deux derniers ouvrent
+#     directement les titres spéciaux, /titres2 la deuxième page)
+#   /shtitres set <joueur> <titre> [variant] pose un titre à un joueur                       shtitres.admin.set
+#   /shtitres clear <joueur>                 retire le titre d'un joueur                     shtitres.admin.clear
+#   /shtitres info <joueur>                  titre enregistré d'un joueur                    shtitres.admin.info
+#   /shtitres list                           tous les titres, rendus dans le chat            shtitres.admin.list
+#   /shtitres reload                         recharge config.yml, titles.yml, messages.yml   shtitres.admin.reload
+#   Sans argument, /shtitres affiche les sous-commandes que vous pouvez utiliser. set, clear, info, list et reload
+#   marchent depuis la console. shtitres.admin donne toutes les sous-commandes.
+#
+# reload : si un fichier est invalide, rien n'est remplacé et le message donne le fichier et l'erreur.
+# database et migration demandent un redémarrage.
+#
+# Placeholders (PlaceholderAPI) :
+#   %shtitres_titre%               titre du joueur, version fixe (chat, hover, menus)
+#   %shtitres_titre_anime%         titre du joueur, image courante de son animation (nametag)
+#   %shtitres_titre_espace%        comme %shtitres_titre%, suivi d'une espace s'il y a un titre
+#   %shtitres_titre_anime_espace%  comme %shtitres_titre_anime%, suivi d'une espace s'il y a un titre
+#   %shtitres_id%                  identifiant du titre (netflix)
+#   %shtitres_nom%                 nom du titre sans couleur (Netflix)
+#   %shtitres_possedes%            nombre de titres possédés
+#   %shtitres_total%               nombre de titres existants
+#   Vides quand le joueur n'a pas de titre, ou n'a plus la permission du titre enregistré.
+#   Le texte rendu utilise les codes & et &#RRGGBB.
+#   Pour un nametag animé avec UnlimitedNametags, mettre %shtitres_titre_anime% à 2 ticks dans
+#   performance.placeholderUpdateRates (même cadence que animation.frame-ticks).
+#
+# Messages et textes du menu : messages.yml. Titres : titles.yml.
+
+# Base partagée par les serveurs qui affichent les titres. La table shtitres_players est créée au démarrage.
+database:
+  host: "127.0.0.1"
+  port: 3306
+  database: "Cosmetiques"
+  username: "CHANGE_ME"
+  password: "CHANGE_ME"
+  pool-size: 4
+
+# Placeholder qui donne la couleur du joueur, utilisée par la variante « adaptive » d'un titre (bords à la couleur
+# du joueur). Résultat attendu : un code couleur (&a, &#55FF55...). Relu à la connexion et toutes les minutes.
+adaptive-color-placeholder: "%shvaultcolor_color%"
+
+animation:
+  # Durée d'une image des animations, en ticks (2 = 10 images par seconde).
+  frame-ticks: 2
+
+# Toutes les combien de secondes la permission du titre porté est revérifiée. Un joueur qui perd la permission
+# n'affiche plus le titre ; son choix reste en base et revient s'il la retrouve.
+ownership-check-seconds: 60
+
+# Reprise des titres posés par les anciens menus en suffixe LuckPerms (meta suffix). Au démarrage, chaque suffixe
+# qui correspond à un titre connu devient le titre du joueur (sans écraser un titre déjà choisi dans SHTitres), puis
+# le suffixe est retiré de LuckPerms. Les suffixes inconnus sont laissés et listés dans la console. N'activer que sur
+# un seul serveur.
+migration:
+  luckperms-suffix: false
+
+# Catégories du menu, dans l'ordre. Chaque titre de titles.yml appartient à une catégorie.
+#   unowned : ce que montre un titre non possédé
+#     buy     le titre, avec « Cliquez pour acheter » (buy-commands au clic)
+#     locked  une barrière « Titre non obtenu » (menu.locked-item dans messages.yml)
+#   accent-glint : vitres d'accent enchantées
+categories:
+  titres:
+    unowned: buy
+    accent-glint: false
+  speciaux:
+    unowned: locked
+    accent-glint: true
+
+# Commandes lancées au clic sur un titre non possédé d'une catégorie « buy ». Préfixe player: (en tant que joueur)
+# ou console: ; {player} = pseudo.
+buy-commands:
+  - "player: shdialogs open boutique"
+
+menu:
+  rows: 5
+  # Cases des titres, dans l'ordre de titles.yml.
+  title-slots:
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 20
+    - 21
+    - 22
+    - 23
+    - 24
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+  border:
+    material: BLACK_STAINED_GLASS_PANE
+    slots:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 17
+      - 18
+      - 26
+      - 27
+      - 35
+      - 36
+      - 37
+      - 38
+      - 39
+      - 40
+      - 41
+      - 42
+      - 43
+      - 44
+  accent:
+    material: PURPLE_STAINED_GLASS_PANE
+    slots:
+      - 10
+      - 16
+      - 19
+      - 25
+      - 28
+      - 34
+  # Boutons. switch passe à la catégorie suivante.
+  buttons:
+    previous: 39
+    remove: 40
+    next: 41
+    switch: 44
+  switch-material: END_CRYSTAL
+  page-material: ARROW
+  # Sons (clés Minecraft). Vide : aucun son.
+  sounds:
+    open: "ui.toast.in"
+    select: "entity.horse.armor"
+    remove: "entity.villager.trading"
+    page: "ui.button.click"

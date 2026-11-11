@@ -1,0 +1,55 @@
+name: SHTitres
+version: '${project.version}'
+main: org.Cry_Legende.sHTitres.SHTitres
+api-version: '1.20'
+author: Cry_Legende
+description: Titres cosmétiques en dégradés animés, affichés dans le chat et au-dessus du joueur.
+softdepend: [PlaceholderAPI, LuckPerms]
+libraries:
+  - com.zaxxer:HikariCP:5.1.0
+  - org.mariadb.jdbc:mariadb-java-client:3.4.1
+
+commands:
+  titres:
+    description: Choisir son titre.
+    aliases: [titre, tags, tag, titres2, titre_speciaux, titre_speciaux2]
+    permission: shtitres.use
+    usage: /titres
+  shtitres:
+    description: Administration de SHTitres.
+    permission: shtitres.admin.set;shtitres.admin.clear;shtitres.admin.info;shtitres.admin.list;shtitres.admin.reload
+    usage: |
+      /shtitres set <joueur> <titre> [variant]
+      /shtitres clear <joueur>
+      /shtitres info <joueur>
+      /shtitres list
+      /shtitres reload
+
+permissions:
+  shtitres.use:
+    description: Ouvrir le menu des titres avec /titres.
+    default: true
+  shtitres.admin:
+    description: Toutes les sous-commandes de /shtitres.
+    default: op
+    children:
+      shtitres.admin.set: true
+      shtitres.admin.clear: true
+      shtitres.admin.info: true
+      shtitres.admin.list: true
+      shtitres.admin.reload: true
+  shtitres.admin.set:
+    description: Poser un titre à un joueur avec /shtitres set.
+    default: op
+  shtitres.admin.clear:
+    description: Retirer le titre d'un joueur avec /shtitres clear.
+    default: op
+  shtitres.admin.info:
+    description: Voir le titre enregistré d'un joueur avec /shtitres info.
+    default: op
+  shtitres.admin.list:
+    description: Lister tous les titres avec /shtitres list.
+    default: op
+  shtitres.admin.reload:
+    description: Recharger les fichiers avec /shtitres reload.
+    default: op
