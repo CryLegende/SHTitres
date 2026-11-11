@@ -580,7 +580,7 @@ titles:
 
   topdonateur:
     category: speciaux
-    permission: tag.topdonateur
+    permission: tag.donateur
     icon: NAUTILUS_SHELL
     left: "<#FFC23D>⚜ "
     text: "<gradient:#FFF1C1:#FFB347:#FF9C4B>TopDonateur</gradient>"
