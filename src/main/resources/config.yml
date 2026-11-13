@@ -24,8 +24,8 @@
 #   %shtitres_titre_anime%         titre du joueur, image courante de son animation (nametag)
 #   %shtitres_titre_espace%        comme %shtitres_titre%, suivi d'une espace s'il y a un titre
 #   %shtitres_titre_anime_espace%  comme %shtitres_titre_anime%, suivi d'une espace s'il y a un titre
-#   %shtitres_id%                  identifiant du titre (netflix)
-#   %shtitres_nom%                 nom du titre sans couleur (Netflix)
+#   %shtitres_id%                  identifiant du titre (lucky)
+#   %shtitres_nom%                 nom du titre sans couleur (Lucky)
 #   %shtitres_possedes%            nombre de titres possédés
 #   %shtitres_total%               nombre de titres existants
 #   Vides quand le joueur n'a pas de titre, ou n'a plus la permission du titre enregistré.
@@ -39,14 +39,14 @@
 database:
   host: "127.0.0.1"
   port: 3306
-  database: "Cosmetiques"
+  database: "minecraft"
   username: "CHANGE_ME"
   password: "CHANGE_ME"
   pool-size: 4
 
 # Placeholder qui donne la couleur du joueur, utilisée par la variante « adaptive » d'un titre (bords à la couleur
 # du joueur). Résultat attendu : un code couleur (&a, &#55FF55...). Relu à la connexion et toutes les minutes.
-adaptive-color-placeholder: "%shvaultcolor_color%"
+adaptive-color-placeholder: "%luckperms_meta_couleur%"
 
 animation:
   # Durée d'une image des animations, en ticks (2 = 10 images par seconde).
@@ -79,7 +79,7 @@ categories:
 # Commandes lancées au clic sur un titre non possédé d'une catégorie « buy ». Préfixe player: (en tant que joueur)
 # ou console: ; {player} = pseudo.
 buy-commands:
-  - "player: shdialogs open boutique"
+  - "console: msg {player} Ce titre se débloque dans la boutique."
 
 menu:
   rows: 5
