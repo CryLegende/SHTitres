@@ -230,8 +230,13 @@ public final class TitleMenu implements InventoryHolder {
 
     private void addLines(List<String> lore, String key, Map<String, String> placeholders) {
         for (String line : messages().rawList(key)) {
-            lore.add(Messages.apply(line, placeholders));
+            // Placeholders PlaceholderAPI du texte de messages.yml d'abord : les valeurs insérées ensuite ne sont pas relues
+            lore.add(Messages.apply(papi(line), placeholders));
         }
+    }
+
+    private String papi(String text) {
+        return plugin.hasPlaceholderApi() && text.indexOf('%') >= 0 ? PlaceholderAPI.setPlaceholders(viewer, text) : text;
     }
 
     private ItemStack lockedItem() {
@@ -251,7 +256,9 @@ public final class TitleMenu implements InventoryHolder {
         Title shown = plugin.selections().shownTitle(viewer.getUniqueId());
         meta.displayName(Messages.itemText(messages().raw("menu.remove.name")));
         if (shown == null) {
-            meta.lore(Messages.itemLines(messages().rawList("menu.remove.lore-none")));
+            List<String> lore = new ArrayList<>();
+            addLines(lore, "menu.remove.lore-none", Map.of());
+            meta.lore(Messages.itemLines(lore));
         } else {
             Rendering rendering = plugin.selections().rendering(viewer.getUniqueId());
             String text = rendering == null ? shown.rendering().still() : rendering.still();

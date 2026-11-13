@@ -81,11 +81,13 @@ menu:
     lore:
       - ""
       - " &8• &7Titre actuel : {titre}"
+      - " &8• %shnetworklevel_bonus_titre_etat% &7d'exp de network"
       - ""
       - "&8&o(( &c&oCliquez pour le retirer &8&o))"
     lore-none:
       - ""
       - " &8• &7Titre actuel : &cAucun"
+      - " &8• %shnetworklevel_bonus_titre_etat% &7d'exp de network"
       - ""
       - "&8&o(( &7&oChoisissez un titre &8&o))"
   previous:
