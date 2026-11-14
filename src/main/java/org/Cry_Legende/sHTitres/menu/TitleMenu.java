@@ -146,6 +146,9 @@ public final class TitleMenu implements InventoryHolder {
         if (categoryOrder.size() > 1) {
             inventory.setItem(settings().switchSlot, switchItem());
         }
+        if (hasBack()) {
+            inventory.setItem(settings().backSlot, backItem());
+        }
     }
 
     private String categoryName(String id) {
@@ -284,6 +287,26 @@ public final class TitleMenu implements InventoryHolder {
         return item;
     }
 
+    /** Bouton de retour : affiché quand une case et au moins une commande sont configurées. */
+    private boolean hasBack() {
+        Settings settings = settings();
+        return settings.backSlot >= 0 && settings.backSlot < settings.size() && !settings.backCommands.isEmpty();
+    }
+
+    private ItemStack backItem() {
+        ItemStack item = new ItemStack(settings().backMaterial);
+        ItemMeta meta = item.getItemMeta();
+        // messages.yml d'avant la 1.2 : pas de texte pour ce bouton, on prend celui des autres menus du serveur
+        String name = messages().raw("menu.back.name");
+        meta.displayName(Messages.itemText(name.isBlank() ? "&c⤾ Retour &7(Clic)" : name));
+        List<String> lore = new ArrayList<>();
+        addLines(lore, "menu.back.lore", Map.of());
+        meta.lore(Messages.itemLines(lore));
+        meta.addItemFlags(ItemFlag.values());
+        item.setItemMeta(meta);
+        return item;
+    }
+
     private ItemStack switchItem() {
         String target = categoryName(nextCategory());
         Map<String, String> placeholders = Map.of("{categorie}", target, "{categorie_lower}", target.toLowerCase(Locale.ROOT));
@@ -358,6 +381,14 @@ public final class TitleMenu implements InventoryHolder {
             reopen(category, page + 1);
         } else if (slot == settings.switchSlot && categoryOrder.size() > 1) {
             reopen(nextCategory(), 0);
+        } else if (slot == settings.backSlot && hasBack()) {
+            // Au tick suivant : la commande ouvre un autre menu, ce qui ne se fait pas pendant le clic
+            plugin.playSound(viewer, settings.soundPage);
+            plugin.getServer().getScheduler().runTask(plugin, () -> {
+                if (viewer.isOnline()) {
+                    plugin.runBackCommands(viewer);
+                }
+            });
         }
     }
 

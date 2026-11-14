@@ -43,6 +43,10 @@ public final class Settings {
     public final int removeSlot;
     public final int nextSlot;
     public final int switchSlot;
+    /** Case du bouton de retour ; -1 : pas de bouton. */
+    public final int backSlot;
+    public final Material backMaterial;
+    public final List<String> backCommands;
     public final Material switchMaterial;
     public final Material pageMaterial;
     public final String soundOpen;
@@ -88,6 +92,9 @@ public final class Settings {
         this.removeSlot = yaml.getInt("menu.buttons.remove", 40);
         this.nextSlot = yaml.getInt("menu.buttons.next", 41);
         this.switchSlot = yaml.getInt("menu.buttons.switch", 44);
+        this.backSlot = yaml.getInt("menu.buttons.back", -1);
+        this.backMaterial = material(yaml.getString("menu.back-material"), Material.PAPER, logger);
+        this.backCommands = yaml.getStringList("menu.back-commands");
         this.switchMaterial = material(yaml.getString("menu.switch-material"), Material.END_CRYSTAL, logger);
         this.pageMaterial = material(yaml.getString("menu.page-material"), Material.ARROW, logger);
         this.soundOpen = yaml.getString("menu.sounds.open", "");

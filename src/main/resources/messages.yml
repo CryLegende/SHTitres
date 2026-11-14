@@ -102,6 +102,9 @@ menu:
       - ""
       - "&8• &7Page {page}/{pages}"
       - ""
+  back:
+    name: "&c⤾ Retour &7(Clic)"
+    lore: []
   switch:
     name: "&f{categorie}"
     lore:

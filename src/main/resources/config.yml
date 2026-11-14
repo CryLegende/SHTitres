@@ -142,6 +142,11 @@ menu:
     remove: 40
     next: 41
     switch: 44
+    # Bouton de retour (vers un menu parent). -1 ou aucune commande dans back-commands : pas de bouton.
+    back: 36
+  # Commandes du bouton de retour, mêmes préfixes que buy-commands. Vide : pas de bouton.
+  back-commands: []
+  back-material: PAPER
   switch-material: END_CRYSTAL
   page-material: ARROW
   # Sons (clés Minecraft). Vide : aucun son.

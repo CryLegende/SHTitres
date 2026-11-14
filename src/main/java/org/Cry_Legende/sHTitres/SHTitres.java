@@ -248,7 +248,16 @@ public final class SHTitres extends JavaPlugin implements Listener {
     }
 
     public void runBuyCommands(Player player) {
-        for (String line : settings.buyCommands) {
+        runCommands(player, settings.buyCommands);
+    }
+
+    /** Commandes du bouton de retour du menu (menu.back-commands). */
+    public void runBackCommands(Player player) {
+        runCommands(player, settings.backCommands);
+    }
+
+    private void runCommands(Player player, List<String> lines) {
+        for (String line : lines) {
             String command = line.replace("{player}", player.getName());
             if (command.startsWith("player:")) {
                 player.performCommand(command.substring("player:".length()).trim());
